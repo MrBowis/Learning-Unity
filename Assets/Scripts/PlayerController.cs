@@ -20,14 +20,16 @@ public class ScriptDePrueba : MonoBehaviour
             jumpCooldown = Time.time + 3;
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
-            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(-1, 0), ForceMode2D.Impulse);
+            this.GetComponent<SpriteRenderer>().flipX = true;
+            this.GetComponent<Transform>().position = new Vector2(this.GetComponent<Transform>().position.x - 0.01f, this.GetComponent<Transform>().position.y);
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
-            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(1, 0), ForceMode2D.Impulse);
+            this.GetComponent<SpriteRenderer>().flipX = false;
+            this.GetComponent<Transform>().position = new Vector2(this.GetComponent<Transform>().position.x + 0.01f, this.GetComponent<Transform>().position.y);
         }
     }
 }
