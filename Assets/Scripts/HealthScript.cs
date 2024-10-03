@@ -13,11 +13,6 @@ public class HealthScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        InvokeRepeating("TakeDamage", 1f, 1f);
-    }
-
-    void TakeDamage()
-    {
-        this.GetComponent<SpriteRenderer>().size = new Vector2(this.GetComponent<SpriteRenderer>().size.x + this.GetComponent<SpriteRenderer>().size.x, this.GetComponent<SpriteRenderer>().size.y);
+        
     }
 }

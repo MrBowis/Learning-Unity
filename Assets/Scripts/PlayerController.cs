@@ -13,23 +13,25 @@ public class ScriptDePrueba : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        double jumpCooldown = 3;
-        if (Input.GetKeyDown(KeyCode.W) && Time.time > jumpCooldown)
+        GameObject camera = GameObject.FindWithTag("Main Camera");
+
+        if (Input.GetKeyDown(KeyCode.W))
         {
-            this.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
-            jumpCooldown = Time.time + 3;
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 3), ForceMode2D.Impulse);
         }
 
         if (Input.GetKey(KeyCode.A))
         {
-            this.GetComponent<SpriteRenderer>().flipX = true;
-            this.GetComponent<Transform>().position = new Vector2(this.GetComponent<Transform>().position.x - 0.01f, this.GetComponent<Transform>().position.y);
+            GetComponent<SpriteRenderer>().flipX = true;
+            camera.transform.position = new Vector3(camera.transform.position.x - 0.01f, camera.transform.position.y, -1);
+            GetComponent<Transform>().position = new Vector2(GetComponent<Transform>().position.x - 0.01f, GetComponent<Transform>().position.y);
         }
 
         if (Input.GetKey(KeyCode.D))
         {
-            this.GetComponent<SpriteRenderer>().flipX = false;
-            this.GetComponent<Transform>().position = new Vector2(this.GetComponent<Transform>().position.x + 0.01f, this.GetComponent<Transform>().position.y);
+            GetComponent<SpriteRenderer>().flipX = false;
+            camera.transform.position = new Vector3(camera.transform.position.x + 0.01f, camera.transform.position.y, -1);
+            GetComponent<Transform>().position = new Vector2(GetComponent<Transform>().position.x + 0.01f, GetComponent<Transform>().position.y);
         }
     }
 }
