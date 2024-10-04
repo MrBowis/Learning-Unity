@@ -5,8 +5,14 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public GameObject shooter;
     private Transform _firePoint;
-    
+
+    void Awake()
+    {
+        _firePoint = transform.Find("FirePoint");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,14 +21,23 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _firePoint = transform.Find("FirePoint");
-        bulletPrefab.GetComponent<SpriteRenderer>().flipX = GetComponent<SpriteRenderer>().flipX;
-        if (GetComponent<SpriteRenderer>().flipX)
-            bulletPrefab.GetComponent<Bullet>().direction = new Vector2(-1, 0);
-        else
-            bulletPrefab.GetComponent<Bullet>().direction = new Vector2(1, 0);
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Shoot();
+        }
+    }
 
-        if(Input.GetKeyDown(KeyCode.F))
-        Instantiate(bulletPrefab, _firePoint.transform.position, Quaternion.identity);
+    void Shoot()
+    {
+        if (bulletPrefab != null && _firePoint != null && shooter != null)
+        {
+            GameObject bulletComponent = Instantiate(bulletPrefab, _firePoint.position, Quaternion.identity) as GameObject;
+            Bullet bullet = bulletComponent.GetComponent<Bullet>();
+
+            if (shooter.GetComponent<Transform>().localScale.x < 0)
+                bullet.direction = Vector2.left;
+            else
+                bullet.direction = Vector2.right;
+        }
     }
 }
