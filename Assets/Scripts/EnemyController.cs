@@ -25,7 +25,7 @@ public class Enemycontroller : MonoBehaviour
 
     private void UpdateTarget()
     {
-        if (_target != null)
+        if (_target == null)
         {
             _target = new GameObject("Target");
             _target.transform.position = new Vector2(minX, transform.position.y);
