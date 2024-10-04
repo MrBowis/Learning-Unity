@@ -38,6 +38,8 @@ public class Weapon : MonoBehaviour
                 bullet.direction = Vector2.left;
             else
                 bullet.direction = Vector2.right;
+        } else {
+            Debug.Log("Something is missing, try setting the bulletPrefab or shooter");
         }
     }
 }
