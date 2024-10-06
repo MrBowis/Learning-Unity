@@ -298,17 +298,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: distanceToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: distanceToTarget
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4431889330245074496, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8584596588987084716, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.339
       objectReference: {fileID: 0}
     - target: {fileID: 8584596588987084716, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.033
       objectReference: {fileID: 0}
     - target: {fileID: 8584596588987084716, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_LocalPosition.z

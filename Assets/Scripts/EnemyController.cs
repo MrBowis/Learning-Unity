@@ -14,6 +14,7 @@ public class Enemycontroller : MonoBehaviour
     public float distanceToPlayer;
 
     private GameObject _target;
+    private bool shouldStartCoroutine = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -27,15 +28,8 @@ public class Enemycontroller : MonoBehaviour
         GameObject player = GameObject.FindWithTag("Player");
         Vector2 direction = player.transform.position - transform.position;
         float distanceX = transform.position.x - player.transform.position.x;
-        if (_target == null)
-        {
-            _target = new GameObject("Target");
-        }
 
-        if (direction.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-        else
-            transform.localScale = new Vector3(1, 1, 1);
+        transform.localScale = new Vector3(direction.x < 0 ? -1 : 1, 1, 1);
         
         if (distanceX < distanceToTarget && distanceX > -distanceToTarget)
         {
@@ -43,11 +37,18 @@ public class Enemycontroller : MonoBehaviour
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
+            shouldStartCoroutine = true;
+        } else if (shouldStartCoroutine)
+        {
+            UpdateTarget();
+            StartCoroutine("PatrolToTarget");
+            shouldStartCoroutine = false;
         }
     }
 
     private void UpdateTarget()
     {
+        
         if (_target == null)
         {
             _target = new GameObject("Target");
@@ -56,6 +57,12 @@ public class Enemycontroller : MonoBehaviour
             return;
         }
 
+        if(_target.GetComponent<Transform>().position.x != minX && _target.GetComponent<Transform>().position.x != maxX)
+        {
+            _target.GetComponent<Transform>().position = new Vector2(minX, transform.position.y);
+            return;
+        }
+        
         if (_target.transform.position.x == minX)
         {
             _target.transform.position = new Vector2(maxX, transform.position.y);
@@ -76,6 +83,7 @@ public class Enemycontroller : MonoBehaviour
             float xDirection = direction.x;
 
             transform.Translate(direction.normalized * speed * Time.deltaTime);
+            transform.localScale = new Vector3(xDirection < 0 ? -1 : 1, 1, 1);
             yield return null;
         }
 
