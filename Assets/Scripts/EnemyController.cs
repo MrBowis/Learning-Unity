@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 
 public class Enemycontroller : MonoBehaviour
 {
-    public float speed = 1.5f;
+    public float speed;
     public float minX;
     public float maxX;
     public float waitTime = 2f;
@@ -20,7 +21,23 @@ public class Enemycontroller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        GameObject player = GameObject.FindWithTag("Player");
+        float distance = Vector2.Distance(transform.position, player.transform.position);
+        if (_target == null)
+        {
+            _target = new GameObject("Target");
+        }
+
+        if (distance < 1)
+        {
+            _target.transform.position = new Vector2(player.transform.position.x, transform.position.y);
+            StopCoroutine("PatrolToTarget");
+            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
+        }
+        else
+        {
+            StartCoroutine("PatrolToTarget");
+        }
     }
 
     private void UpdateTarget()
