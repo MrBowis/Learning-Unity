@@ -672,7 +672,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 682068b335982779097a5bbcc6841ab8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1.5
+  speed: 2
   direction: {x: 1, y: 0}
 --- !u!95 &753190773
 Animator:
@@ -1394,6 +1394,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: maxX
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: minX
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: speed
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: distanceToPlayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: distanceToTarget
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3108707210709397694, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_IsActive
       value: 1

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemycontroller : MonoBehaviour
@@ -9,6 +10,8 @@ public class Enemycontroller : MonoBehaviour
     public float minX;
     public float maxX;
     public float waitTime = 2f;
+    public float distanceToTarget;
+    public float distanceToPlayer;
 
     private GameObject _target;
     // Start is called before the first frame update
@@ -22,21 +25,24 @@ public class Enemycontroller : MonoBehaviour
     void Update()
     {
         GameObject player = GameObject.FindWithTag("Player");
-        float distance = Vector2.Distance(transform.position, player.transform.position);
+        Vector2 direction = player.transform.position - transform.position;
+        float distanceX = transform.position.x - player.transform.position.x;
         if (_target == null)
         {
             _target = new GameObject("Target");
         }
 
-        if (distance < 1)
-        {
-            _target.transform.position = new Vector2(player.transform.position.x, transform.position.y);
-            StopCoroutine("PatrolToTarget");
-            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
-        }
+        if (direction.x < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
         else
+            transform.localScale = new Vector3(1, 1, 1);
+        
+        if (distanceX < distanceToTarget && distanceX > -distanceToTarget)
         {
-            StartCoroutine("PatrolToTarget");
+            StopCoroutine("PatrolToTarget");
+            float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
+            _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
+            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
         }
     }
 
