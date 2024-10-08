@@ -11,7 +11,7 @@ public class Enemycontroller : MonoBehaviour
     public float minX;
     public float maxX;
     public float waitTime = 2f;
-    public float distanceToTarget;
+    public float visionRange;
     public float distanceToPlayer;
     private GameObject _target;
     private bool shouldStartCoroutine = false;
@@ -38,7 +38,7 @@ public class Enemycontroller : MonoBehaviour
 
         transform.localScale = new Vector3(direction.x < 0 ? -1 : 1, 1, 1);
         
-        if (distanceX < distanceToTarget && distanceX > -distanceToTarget)
+        if (distanceX < visionRange && distanceX > -visionRange)
         {
             StopCoroutine("PatrolToTarget");
             _animator.SetBool("Idle", true);
@@ -46,7 +46,7 @@ public class Enemycontroller : MonoBehaviour
             _animator.SetTrigger("Shoot");
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
-            transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
+            // transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
             shouldStartCoroutine = true;
         } else if (shouldStartCoroutine)
         {
