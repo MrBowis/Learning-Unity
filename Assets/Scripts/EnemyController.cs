@@ -16,10 +16,12 @@ public class Enemycontroller : MonoBehaviour
     private GameObject _target;
     private bool shouldStartCoroutine = false;
     private Animator _animator;
+    private Weapon _weapon;
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
+        _weapon = GetComponentInChildren<Weapon>();
     }
 
     // Start is called before the first frame update
@@ -45,7 +47,7 @@ public class Enemycontroller : MonoBehaviour
             _animator.SetTrigger("Shoot");
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
-            // transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
+            _weapon.Shoot();
             shouldStartCoroutine = true;
         } else if (shouldStartCoroutine)
         {
