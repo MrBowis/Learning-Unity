@@ -42,7 +42,6 @@ public class Enemycontroller : MonoBehaviour
         {
             StopCoroutine("PatrolToTarget");
             _animator.SetBool("Idle", true);
-            _animator.SetBool("Shoot", false);
             _animator.SetTrigger("Shoot");
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);

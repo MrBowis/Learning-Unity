@@ -299,12 +299,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: visionRange
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: distanceToPlayer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: distanceToTarget
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4431889330245074496, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: m_Name
@@ -1110,7 +1114,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 649924085
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: -391277673, guid: d49a675c7774dc94cb6a7a3f98ccc8b1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
