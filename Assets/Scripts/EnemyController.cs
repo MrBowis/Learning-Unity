@@ -47,7 +47,6 @@ public class Enemycontroller : MonoBehaviour
             _animator.SetTrigger("Shoot");
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
-            _weapon.Shoot();
             shouldStartCoroutine = true;
         } else if (shouldStartCoroutine)
         {
@@ -111,5 +110,9 @@ public class Enemycontroller : MonoBehaviour
         
         Debug.Log("Waited enough time");
         StartCoroutine("PatrolToTarget");
+    }
+    private void Shoot()
+    {
+        _weapon.Shoot();
     }
 }

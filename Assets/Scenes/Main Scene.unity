@@ -300,7 +300,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: visionRange
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1702872381191863231, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
       propertyPath: distanceToPlayer
@@ -354,6 +354,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8772825957333284745, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+      propertyPath: shooter
+      value: 
+      objectReference: {fileID: 1082490990}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -794,6 +798,11 @@ Transform:
   - {fileID: 1587011916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1082490990 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4431889330245074496, guid: 6e3b5c9a35ad889a78635f795b494dbb, type: 3}
+  m_PrefabInstance: {fileID: 456551613}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1223965689
 GameObject:
   m_ObjectHideFlags: 0
