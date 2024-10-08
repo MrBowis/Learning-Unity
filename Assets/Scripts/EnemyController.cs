@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Dependencies.Sqlite;
 using UnityEngine;
 
 public class Enemycontroller : MonoBehaviour
@@ -12,9 +13,15 @@ public class Enemycontroller : MonoBehaviour
     public float waitTime = 2f;
     public float distanceToTarget;
     public float distanceToPlayer;
-
     private GameObject _target;
     private bool shouldStartCoroutine = false;
+    private Animator _animator;
+
+    void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +41,9 @@ public class Enemycontroller : MonoBehaviour
         if (distanceX < distanceToTarget && distanceX > -distanceToTarget)
         {
             StopCoroutine("PatrolToTarget");
+            _animator.SetBool("Idle", true);
+            _animator.SetBool("Shoot", false);
+            _animator.SetTrigger("Shoot");
             float dP = distanceX < 0 ? -distanceToPlayer : distanceToPlayer;
             _target.transform.position = new Vector2(player.transform.position.x + dP, transform.position.y);
             transform.position = Vector2.MoveTowards(transform.position, _target.transform.position, speed * Time.deltaTime);
@@ -79,6 +89,8 @@ public class Enemycontroller : MonoBehaviour
     {
         while (Vector2.Distance(transform.position, _target.transform.position) > 0.05f)
         {
+            _animator.SetBool("Idle", false);
+
             Vector2 direction = _target.transform.position - transform.position;
             float xDirection = direction.x;
 
@@ -89,12 +101,14 @@ public class Enemycontroller : MonoBehaviour
 
         Debug.Log("Reached the target");
         transform.position = new Vector2(_target.transform.position.x, transform.position.y);
+        UpdateTarget();
+
+        _animator.SetBool("Idle", true);
 
         Debug.Log("Waiting for " + waitTime + " seconds");
         yield return new WaitForSeconds(waitTime);
         
         Debug.Log("Waited enough time");
-        UpdateTarget();
         StartCoroutine("PatrolToTarget");
     }
 }
