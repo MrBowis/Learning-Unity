@@ -17,11 +17,13 @@ public class Enemycontroller : MonoBehaviour
     private bool shouldStartCoroutine = false;
     private Animator _animator;
     private Weapon _weapon;
+    private Dust _dust;
 
     void Awake()
     {
         _animator = GetComponent<Animator>();
         _weapon = GetComponentInChildren<Weapon>();
+        _dust = GetComponentInChildren<Dust>();
     }
 
     // Start is called before the first frame update
