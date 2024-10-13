@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Dust : MonoBehaviour
 {
-    public float lifeTime = 1f;
+    public float lifeTime = 0.5f;
     public GameObject prefab;
     public GameObject point;
 
